@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fyp/Screens/HomePage.dart';
+import 'package:fyp/Screens/BottomNavigation.dart';
 import 'package:fyp/Screens/SignIn.dart';
 import 'package:fyp/Screens/Splash.dart';
 import 'package:fyp/Screens/Boarding.dart';
@@ -25,7 +25,7 @@ Future main() async{
       // When navigating to the "/second" route, build the SecondScreen widget.
       '/boarding': (context) => const Boarding(),
       '/login': (context) => const SignUpIn(),
-      '/home': (context) => const HomePage(),
+      '/bottom': (context) => const BottomNavigation(),
     },
   ));
 }

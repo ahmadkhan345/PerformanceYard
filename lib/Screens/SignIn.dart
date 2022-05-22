@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
-import 'package:fyp/Screens/HomePage.dart';
+import 'package:fyp/Screens/BottomNavigation.dart';
 
 class SignUpIn extends StatelessWidget {
   const SignUpIn({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class SignUpIn extends StatelessWidget {
     stream: FirebaseAuth.instance.authStateChanges(),
     builder: (context, snapshot) {
       if (snapshot.hasData) {
-        return const HomePage();
+        return const BottomNavigation();
       }
       else {
         return const SignInScreen(
