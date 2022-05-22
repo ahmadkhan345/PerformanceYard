@@ -5,6 +5,7 @@ import 'package:fyp/Screens/BottomNavigation.dart';
 import 'package:fyp/Screens/SignIn.dart';
 import 'package:fyp/Screens/Splash.dart';
 import 'package:fyp/Screens/Boarding.dart';
+import 'package:fyp/Screens/SignInDetails.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async{
@@ -25,6 +26,7 @@ Future main() async{
       // When navigating to the "/second" route, build the SecondScreen widget.
       '/boarding': (context) => const Boarding(),
       '/login': (context) => const SignUpIn(),
+      '/signindetails': (context) => const SignInDetails(),
       '/bottom': (context) => const BottomNavigation(),
     },
   ));
