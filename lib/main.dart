@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fyp/Screens/BottomNavigation.dart';
+import 'package:fyp/Screens/ResetPassword.dart';
 import 'package:fyp/Screens/SignIn.dart';
+import 'package:fyp/Screens/SignUp.dart';
 import 'package:fyp/Screens/Splash.dart';
-import 'package:fyp/Screens/Boarding.dart';
-import 'package:fyp/Screens/SignInDetails.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async{
@@ -23,11 +22,10 @@ Future main() async{
     routes: {
       // When navigating to the "/" route, build the HomeScreen widget.
       '/': (context) => const Splash(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      '/boarding': (context) => const Boarding(),
-      '/login': (context) => const SignUpIn(),
-      '/signindetails': (context) => const SignInDetails(),
-      '/bottom': (context) => const BottomNavigation(),
+      '/signin': (context) => const SignIn(),
+      '/signup': (context) => const SignUpScreen(),
+      '/home': (context) => const Home(),
+      '/reset': (context) => const ResetPassword(),
     },
   ));
 }
