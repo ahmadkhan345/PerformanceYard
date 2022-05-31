@@ -15,7 +15,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3),
-            ()=>Navigator.pushNamed(context, '/signin')
+            ()=>Navigator.pushReplacementNamed(context, '/signin')
 
         );
   }
@@ -34,17 +34,12 @@ class _SplashState extends State<Splash> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-       Text(
-         "The Performance Yard",
-         style: TextStyle(
-           color: Colors.white,
-           fontWeight: FontWeight.bold,
-           fontSize: 30,
-           fontFamily: 'Hind'
-         ),
-       )
-        ]),
+            children:  [
+               Image.asset('Assets/Logo.png',
+                 height: 250,
+                 width: 200,)
+            ]
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../Constants/Colors.dart';
 import '../Widgets/Reusable-Widget.dart';
 
@@ -32,7 +31,6 @@ class _SignInScreenState extends State<SignIn> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/logo1.png"),
                 const SizedBox(
                   height: 30,
                 ),
@@ -71,7 +69,7 @@ class _SignInScreenState extends State<SignIn> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have account?",
+        const Text("Don't have an account?",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
           onTap: () {
