@@ -13,8 +13,10 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
    TextEditingController _passwordTextController = TextEditingController();
    TextEditingController _emailTextController = TextEditingController();
-   TextEditingController _userNameTextController = TextEditingController();
-  @override
+   TextEditingController _companyNameTextController = TextEditingController();
+
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -43,8 +45,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    reusableTextField("Enter Username", Icons.person_outline, false,
-                        _userNameTextController),
+                    reusableTextField("Enter Company name", Icons.person_outline, false,
+                        _companyNameTextController),
                     const SizedBox(
                       height: 20,
                     ),

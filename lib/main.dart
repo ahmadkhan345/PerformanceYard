@@ -24,7 +24,7 @@ Future main() async{
       '/': (context) => const Splash(),
       '/signin': (context) => const SignIn(),
       '/signup': (context) => const SignUpScreen(),
-      '/home': (context) => const Home(),
+      '/home': (context) => const BottomBarWidget(),
       '/reset': (context) => const ResetPassword(),
     },
   ));
