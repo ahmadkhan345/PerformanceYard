@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import '../Constants/Colors.dart';
 
 
@@ -27,9 +26,9 @@ class _SplashState extends State<Splash> {
         height: double.infinity,
         decoration:  BoxDecoration(
             gradient: LinearGradient(colors: [
-              hexStringToColor("CB2B93"),
-              hexStringToColor("9546C4"),
-              hexStringToColor("5E61F4")
+              hexStringToColor("42ded1"),
+              hexStringToColor("21bfae"),
+              hexStringToColor("07635e")
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

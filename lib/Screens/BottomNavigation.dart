@@ -8,10 +8,19 @@ class BottomBarWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<BottomBarWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
     Text(
       'Index 0: Home',
       style: optionStyle,
@@ -37,7 +46,7 @@ class _MyStatefulWidgetState extends State<BottomBarWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Performance Yard'),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -64,3 +73,4 @@ class _MyStatefulWidgetState extends State<BottomBarWidget> {
     );
   }
 }
+

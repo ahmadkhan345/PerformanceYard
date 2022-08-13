@@ -13,7 +13,6 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
    TextEditingController _passwordTextController = TextEditingController();
    TextEditingController _emailTextController = TextEditingController();
-   TextEditingController _companyNameTextController = TextEditingController();
 
 
    @override
@@ -22,10 +21,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         title: const Text(
           "Sign Up",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
       ),
       body: Container(
@@ -33,20 +33,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                hexStringToColor("CB2B93"),
-                hexStringToColor("9546C4"),
-                hexStringToColor("5E61F4")
+                hexStringToColor("42ded1"),
+                hexStringToColor("21bfae"),
+                hexStringToColor("07635e")
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+                padding: EdgeInsets.fromLTRB(30, 120, 30, 0),
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    reusableTextField("Enter Company name", Icons.person_outline, false,
-                        _companyNameTextController),
                     const SizedBox(
                       height: 20,
                     ),
@@ -67,9 +62,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           password: _passwordTextController.text)
                           .then((value) {
                         print("Created New Account");
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/details');
                       }).onError((error, stackTrace) {
-                        print("Error ${error.toString()}");
+                        showAlertDialog(context, error.toString());
                       });
                     })
                   ],
@@ -77,4 +72,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ))),
     );
   }
+}
+
+showAlertDialog(BuildContext context, String message) {
+  var test = message.replaceAll(RegExp('\\[.*?\\]'), '');
+
+  // Create button
+  Widget okButton = ElevatedButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+    style: ButtonStyle (
+      backgroundColor: MaterialStateProperty.all(Colors.green)
+    ),
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Center(child :Text("Performance Yard")),
+    content: Row(
+      children : <Widget>[
+        Image.asset('Assets/Logo.png', height: 45, width :45,),
+        Expanded(
+          child: Text(
+             "${test}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
+        )
+      ],
+    ),    actions: [
+      okButton,
+    ],
+    actionsPadding: const EdgeInsets.only(right: 100),
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

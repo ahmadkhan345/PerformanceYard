@@ -19,10 +19,11 @@ class _ResetPasswordState extends State<ResetPassword> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         title: const Text(
           "Reset Password",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
       ),
       body: Container(
@@ -30,9 +31,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                hexStringToColor("CB2B93"),
-                hexStringToColor("9546C4"),
-                hexStringToColor("5E61F4")
+                hexStringToColor("42ded1"),
+                hexStringToColor("21bfae"),
+                hexStringToColor("07635e")
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
@@ -50,7 +51,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     firebaseUIButton(context, "Reset Password", () {
                       FirebaseAuth.instance
                           .sendPasswordResetEmail(email: _emailTextController.text)
-                          .then((value) => Navigator.of(context).pop());
+                          .then((value) => Navigator.of(context).pop() );
                     })
                   ],
                 ),

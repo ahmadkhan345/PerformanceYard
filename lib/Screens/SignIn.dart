@@ -21,14 +21,14 @@ class _SignInScreenState extends State<SignIn> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              hexStringToColor("CB2B93"),
-              hexStringToColor("9546C4"),
-              hexStringToColor("5E61F4")
+              hexStringToColor("42ded1"),
+              hexStringToColor("21bfae"),
+              hexStringToColor("07635e")
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                30, MediaQuery.of(context).size.height * 0.2, 30, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -51,9 +51,9 @@ class _SignInScreenState extends State<SignIn> {
                       email: _emailTextController.text,
                       password: _passwordTextController.text)
                       .then((value) {
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushReplacementNamed(context, '/home');
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                 showAlertDialog(context, error.toString()) ;
                   });
                 }),
                 signUpOption()
@@ -70,14 +70,14 @@ class _SignInScreenState extends State<SignIn> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have an account?",
-            style: TextStyle(color: Colors.white70)),
+            style: TextStyle(color: Colors.black87)),
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, '/signup');
           },
           child: const Text(
             " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -92,11 +92,62 @@ class _SignInScreenState extends State<SignIn> {
       child: TextButton(
         child: const Text(
           "Forgot Password?",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: Colors.black87),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.pushNamed(context, '/reset')
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context, String message) {
+  var test = message.replaceAll(RegExp('\\[.*?\\]'), '');
+
+  // Create button
+  Widget okButton = ElevatedButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+    style: ButtonStyle (
+        backgroundColor: MaterialStateProperty.all(Colors.green)
+    ),
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Center(child :Text("Performance Yard")),
+    content: Row(
+      children : <Widget>[
+        Image.asset('Assets/Logo.png', height: 45, width :45,),
+        Expanded(
+          child: Text(
+            "${test}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
+        )
+      ],
+    ),    actions: [
+    okButton,
+  ],
+    actionsPadding: const EdgeInsets.only(right: 100),
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
