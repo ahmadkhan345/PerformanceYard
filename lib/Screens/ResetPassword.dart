@@ -48,14 +48,70 @@ class _ResetPasswordState extends State<ResetPassword> {
                     const SizedBox(
                       height: 20,
                     ),
-                    firebaseUIButton(context, "Reset Password", () {
-                      FirebaseAuth.instance
-                          .sendPasswordResetEmail(email: _emailTextController.text)
-                          .then((value) => Navigator.of(context).pop() );
+                    firebaseUIButton(context, "Reset Password", () async {
+                      try {
+                        await FirebaseAuth.instance
+                            .sendPasswordResetEmail(
+                            email: _emailTextController.text.trim())
+                            .then((value) => Navigator.of(context).pop());
+                      } catch(e) {
+                        print((e));
+                        showAlertDialog(context, e.toString());
+                      }
                     })
                   ],
                 ),
               ))),
     );
   }
+}
+
+showAlertDialog(BuildContext context, String message) {
+  var test = message.replaceAll(RegExp('\\[.*?\\]'), '');
+
+  // Create button
+  Widget okButton = ElevatedButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+    style: ButtonStyle (
+        backgroundColor: MaterialStateProperty.all(Colors.green)
+    ),
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Center(child :Text("Performance Yard")),
+    content: Row(
+      children : <Widget>[
+        Image.asset('Assets/Logo.png', height: 45, width :45,),
+        Expanded(
+          child: Text(
+            "${test}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
+        )
+      ],
+    ),    actions: [
+    okButton,
+  ],
+    actionsPadding: const EdgeInsets.only(right: 100),
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fyp/Screens/BottomNavigation.dart';
+import 'package:fyp/Screens/Employees.dart';
+import 'package:fyp/Screens/Home.dart';
+import 'package:fyp/Screens/Profile.dart';
 import 'package:fyp/Screens/ResetPassword.dart';
 import 'package:fyp/Screens/SignIn.dart';
 import 'package:fyp/Screens/SignUp.dart';
@@ -21,15 +23,13 @@ Future main() async{
     ),
     initialRoute: '/',
     routes: {
-      // When navigating to the "/" route, build the HomeScreen widget.
       '/': (context) => const Splash(),
       '/signin': (context) => const SignIn(),
       '/signup': (context) => const SignUpScreen(),
-      '/home': (context) => const BottomBarWidget(),
+      '/home': (context) => const Home(),
       '/reset': (context) => const ResetPassword(),
       '/details': (context) => const SignUpDetails(),
-
-      // '/signUpDetails': (context) => const SignUpDetails(),
+      '/employees': (context) => const Employees(),
     },
   ));
 }

@@ -18,6 +18,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
     cursorColor: Colors.white,
+
     style: TextStyle(color: Colors.black54.withOpacity(0.9)),
     decoration: InputDecoration(
       prefixIcon: Icon(
@@ -33,6 +34,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
           borderRadius: BorderRadius.circular(30.0),
           borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
     ),
+
     keyboardType: isPasswordType
         ? TextInputType.visiblePassword
         : TextInputType.emailAddress,
@@ -60,6 +62,62 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
               return Colors.black26;
             }
             return Colors.white;
+          }),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)))),
+    ),
+  );
+}
+
+Container firebaseUIInAppButton(BuildContext context, String title, Function onTap) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: 50,
+    margin: const EdgeInsets.fromLTRB(60, 30, 60, 50),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+    child: ElevatedButton(
+      onPressed: () {
+        onTap();
+      },
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.white;
+            }
+            return Colors.grey;
+          }),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)))),
+    ),
+  );
+}
+
+Container firebaseUIEmployeeButton(BuildContext context, String title, Function onTap) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: 40,
+    margin: const EdgeInsets.fromLTRB(60, 15, 60,10),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
+    child: ElevatedButton(
+      onPressed: () {
+        onTap();
+      },
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.white;
+            }
+            return Colors.lightBlue;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)))),
