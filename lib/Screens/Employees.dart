@@ -93,7 +93,9 @@ class _EmployeesState extends State<Employees> {
 }
 
 Widget homeScreen(BuildContext context, String name, highestRated) {
-  return Container(
+  return SingleChildScrollView(
+  child:
+    Container(
     padding: const EdgeInsets.fromLTRB(15,5,0,0),
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
@@ -122,7 +124,8 @@ Widget homeScreen(BuildContext context, String name, highestRated) {
                     firebaseUIEmployeeButton(context, highestRated[index]['name'] , () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  EmployeesData(employeeInfo : highestRated[index],
                           eval: highestRated[index]['last_evaluation'],proj: highestRated[index]['number_project'],
-                          time: highestRated[index]['time_spend_company'])));
+                          time: highestRated[index]['time_spend_company'],
+                          months: highestRated[index]['average_monthly_hours'])));
                     })
                   ],
                 ),
@@ -133,6 +136,7 @@ Widget homeScreen(BuildContext context, String name, highestRated) {
         ),
       ],
     ),
+  ),
   );
 }
 Widget loader(BuildContext context) {

@@ -5,12 +5,13 @@ import '../Widgets/Reusable-Widget.dart';
 import 'package:fyp/Screens/Evaluate.dart';
 
 class EmployeesData extends StatefulWidget {
-  const EmployeesData({Key? key,  this.employeeInfo,  this.eval, this.proj, this.time }) : super(key: key);
+  const EmployeesData({Key? key,  this.employeeInfo,  this.eval, this.proj, this.time,  this.months }) : super(key: key);
 
   final employeeInfo;
   final eval;
   final proj;
   final time;
+  final months;
 
   @override
   _EmployeesDataState createState() => _EmployeesDataState();
@@ -57,7 +58,8 @@ class _EmployeesDataState extends State<EmployeesData> {
             opacity: 10.0
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
         padding: const EdgeInsets.fromLTRB(15,5,0,0),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -74,7 +76,7 @@ class _EmployeesDataState extends State<EmployeesData> {
             PieChart(
               dataMap: data,
               chartType: ChartType.ring,
-              chartRadius: 120,
+              chartRadius: 80,
               baseChartColor: Colors.grey[300]!,
               colorList: colorList,
               legendOptions: const LegendOptions(
@@ -82,12 +84,12 @@ class _EmployeesDataState extends State<EmployeesData> {
               ),
             ),
             const SizedBox(
-              height: 55,
+              height: 35,
             ),
             PieChart(
               dataMap: data1,
               chartType: ChartType.ring,
-              chartRadius: 120,
+              chartRadius: 80,
               baseChartColor: Colors.grey[300]!,
               colorList: colorList,
               legendOptions: const LegendOptions(
@@ -95,12 +97,12 @@ class _EmployeesDataState extends State<EmployeesData> {
               ),
             ),
             const SizedBox(
-              height: 55,
+              height: 35,
             ),
             PieChart(
               dataMap: data2,
               chartType: ChartType.ring,
-              chartRadius: 120,
+              chartRadius: 80,
               baseChartColor: Colors.grey[300]!,
               colorList: colorList,
               legendOptions: const LegendOptions(
@@ -112,11 +114,12 @@ class _EmployeesDataState extends State<EmployeesData> {
             ),
             firebaseUIInAppButton(context, 'Evaluate' , () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => EvaluateScreen(employeeInfo : widget.employeeInfo,
-                eval: widget.eval,proj: widget.proj,
+                eval: widget.eval,proj: widget.proj,months: widget.months,
                 time: widget.time,)));
             })
       ]),
       ),
+    ),
     );
   }
 }

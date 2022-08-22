@@ -92,7 +92,7 @@ class _SignUpDetailsState extends State<SignUpDetails> {
                   usermodel.ntnNumber =  _companyNTNController.text;
                   final uid = user.uid;
                    await FirebaseFirestore.instance.collection('userData').doc(uid).set(usermodel.toJson());
-                  Navigator.pushNamed(context, '/reset');
+                  Navigator.pushNamed(context, '/home');
                 }),
               ],
             ),

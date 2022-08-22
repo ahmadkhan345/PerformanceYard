@@ -111,7 +111,9 @@ class _HomeState extends State<Home> {
 }
 
 Widget homeScreen(BuildContext context, String name, highestRated) {
-  return Container(
+  return SingleChildScrollView(
+  child:
+    Container(
     padding: const EdgeInsets.fromLTRB(15,15,0,0),
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
@@ -153,7 +155,7 @@ Widget homeScreen(BuildContext context, String name, highestRated) {
                 child: Column(
                   children: <Widget>[
                     const SizedBox(
-                      height: 50,
+                      height: 35,
                     ),
                     Container(
                         decoration: BoxDecoration(
@@ -171,14 +173,15 @@ Widget homeScreen(BuildContext context, String name, highestRated) {
               );
               }),
         const SizedBox(
-          height: 50,
+          height: 20,
         ),
         firebaseUIInAppButton(context, "Employees", () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => Employees()));
         })
     ],
     ),
-    );
+    )
+  );
 }
 
 Widget loader(BuildContext context) {
