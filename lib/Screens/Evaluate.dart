@@ -1,6 +1,6 @@
 import 'package:firebase_ml_model_downloader/firebase_ml_model_downloader.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp/Screens/Home.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../Widgets/Reusable-Widget.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
@@ -64,6 +64,7 @@ class _EvaluateScreenState extends State<EvaluateScreen> {
       print(output[0][0]);
       this.setState(() {
         predValue = output[0][0].toString();
+
       });      // ...
     });
 
@@ -124,12 +125,25 @@ class _EvaluateScreenState extends State<EvaluateScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 55,
+                  height: 60,
                 ),
-                firebaseUIInAppButton(context, 'Evaluate', () {
+                Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),  // radius of 10
+                        color: Colors.lightBlue  // green as background color
+                    ),
+                    height: 75,
+                    width: 200,
+                    alignment: Alignment.center,
+                    child:  Text("Satisfaction Level =  ${predValue}", style:const TextStyle(fontSize: 14, color: Colors.white), textAlign: TextAlign.center,
+                    )
+                ), const SizedBox(
+                  height: 100,
+                ),
+                firebaseUIInAppButton(context, 'Return', () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) =>
-                          EvaluateScreen(employeeInfo: widget.employeeInfo,
+                          Home(
                           )));
                 })
               ]),
