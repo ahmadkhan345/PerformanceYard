@@ -1,6 +1,5 @@
 import 'package:firebase_ml_model_downloader/firebase_ml_model_downloader.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/Screens/Home.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../Widgets/Reusable-Widget.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
@@ -21,12 +20,11 @@ class EvaluateScreen extends StatefulWidget {
 
 class _EvaluateScreenState extends State<EvaluateScreen> {
   @override
-  Map<String, double> data = new Map();
-  Map<String, double> data1 = new Map();
-  Map<String, double> data2 = new Map();
+  Map<String, double> data =  Map();
   late final modelPath;
-  var predValue = "";
-
+  var predValue = '';
+  var evaluation = '';
+  var result = 0.0;
   @override
   void initState() {
     data.addAll({
@@ -62,10 +60,19 @@ class _EvaluateScreenState extends State<EvaluateScreen> {
       var output = List.filled(1, 0).reshape([1, 1]);
       interpreter.run(input, output);
       print(output[0][0]);
-      this.setState(() {
+      setState(() {
         predValue = output[0][0].toString();
-
-      });      // ...
+        result = double.parse(predValue);
+        if(result > 0.0 && result <= 0.50){
+          evaluation = "Poor";
+        } else if (result > 0.5 && result <=0.80){
+          evaluation = "Good";
+        } else if (result > 0.80 && result <=0.90){
+          evaluation = "Very Good";
+        } else  {
+          evaluation = "Excellent";
+        }
+      });
     });
 
     super.initState();
@@ -135,16 +142,13 @@ class _EvaluateScreenState extends State<EvaluateScreen> {
                     height: 75,
                     width: 200,
                     alignment: Alignment.center,
-                    child:  Text("Satisfaction Level =  ${predValue}", style:const TextStyle(fontSize: 14, color: Colors.white), textAlign: TextAlign.center,
+                    child:  Text("Satisfaction Level =  ${evaluation}", style:const TextStyle(fontSize: 14, color: Colors.white), textAlign: TextAlign.center,
                     )
                 ), const SizedBox(
                   height: 100,
                 ),
                 firebaseUIInAppButton(context, 'Return', () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) =>
-                          Home(
-                          )));
+                  Navigator.pushReplacementNamed(context, '/home');
                 })
               ]),
         ),
